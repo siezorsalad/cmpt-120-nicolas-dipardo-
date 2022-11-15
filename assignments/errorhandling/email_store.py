@@ -22,24 +22,25 @@ class EmailStore:
         @return the email that was added.
         '''
         email = None
-        # TODO if either first_name or last_name is None raise an exception
-        try:
-            first_name
-        except:
-            print("Please enter first name: ")
-        try: 
-            last_name
-        except:
-            print("please enter last name: ")
-        # TODO use a while loop to construct email from first_name and last_name and check if it exists.      
-        # TODO if generated email exists, increment count.
-        # TODO if generated email doesn't exist, add it to the collection of emails (self.emails).
-            self.emails.append(email)
+        if first_name == None or last_name == None:
+            raise Exception("first/last name cannot be None!")
+        
+        # TODO use a while loop to construct email from first_name and last_name and check if it exists.   
+        count = 1   
+        while True:
+            email = f"{first_name.lower()}.{last_name.lower()}{count}@marist.edu"
+            if self.exists(email):
+                count += 1
+                continue
+            else:
+                self.emails.append(email)
+                break
         return email
 
     def remove(self, email):
         '''
         Method that removes an email from the store.
         '''
-        # TODO if email doesn't exist, raise an exception.
+        if not self.exists(email):
+            raise Exception("The email doest not exist!")
         self.emails.remove(email)

@@ -45,8 +45,10 @@ def remove_emails():
     while True:
         if user_input.lower() == "q":
             break
-        # TODO use a try/except block to catch the exception thrown by the remove method.
-        EMAIL_STORE.remove(user_input.lower())
+        try:
+            EMAIL_STORE.remove(user_input.lower())
+        except Exception as e:
+            print(f"The email {user_input.lower()} does not exist.")
         print(
             f"Successfully deleted the email '{user_input.lower()}' from store!")
         user_input = input("Enter user email to delete ('Q' to quit): ")
