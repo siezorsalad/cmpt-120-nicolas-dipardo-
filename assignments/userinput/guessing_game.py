@@ -98,8 +98,7 @@ def start():
         if guess != choice: 
             print("Try again!") 
             guess = input("What is the animal? ") 
-        
-    
-
+    return None
+            
 start()
 
